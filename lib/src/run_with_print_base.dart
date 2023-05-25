@@ -1,6 +1,15 @@
-// TODO: Put public facing types in this file.
+import 'dart:async';
 
-/// Checks if you are awesome. Spoiler: you are.
-class Awesome {
-  bool get isAwesome => true;
+void runWithPrint(void Function(List<String> logs) testFn) {
+  List<String> logs = [];
+
+  var spec = ZoneSpecification(print: (_, __, ___, String msg) {
+    logs.add(msg);
+  });
+
+  void callback() {
+    testFn(logs);
+  }
+
+  return Zone.current.fork(specification: spec).run<void>(callback);
 }

@@ -1,39 +1,53 @@
-<!-- 
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# run_with_print
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages). 
+A helper for getting the `print` output in tests.
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages). 
--->
+## Introduction
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+Sometimes, you want to check the `print` output when you test the app or test Command Line Interface.
 
-## Features
+This package returns the `print` output to help you to check it in the test code.
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+## Installing
 
-## Getting started
+You can install this package by executing the following command.
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
-
-## Usage
-
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder. 
-
-```dart
-const like = 'sample';
+```bash
+dart pub add --dev run_with_print
 ```
 
-## Additional information
+Or, open the `pubspec.yaml` file and add the `run_with_print` package to dev_dependencies as follows.
 
-TODO: Tell users more about the package: where to find more information, how to 
-contribute to the package, how to file issues, what response they can expect 
-from the package authors, and more.
+```yaml
+...
+dev_dependencies:
+  run_with_print: [version]
+...
+```
+
+## Example
+
+You can use the `runWithPrint` function to get the `print` output. A full test example could look like the following.
+
+```dart
+import 'package:run_with_print/run_with_print.dart';
+import 'package:test/test.dart';
+
+void main() {
+  test('Check print contents', () {
+    runWithPrint((logs) {
+      print('test log');
+      expect(logs[0], 'test log');
+
+      print('test message');
+      expect(logs[1], 'test message');
+    });
+  });
+}
+```
+
+You can just wrap the test code with `runWithPrint(() {});` to get the `print` output.
+
+## Contributing
+
+If you want to contribute to this package, please see [CONTRIBUTING](CONTRIBUTING.md).
