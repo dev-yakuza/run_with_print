@@ -1,8 +1,3 @@
-/// Support for doing something awesome.
-///
-/// More dartdocs go here.
 library;
 
-export 'src/run_with_print_base.dart';
-
-// TODO: Export any libraries intended for clients of this package.
+export 'src/run_with_print_base.dart' show runWithPrint;
