@@ -1,9 +1,12 @@
 import 'dart:async';
+import 'dart:io';
 
-R runWithPrint<R>(R Function(List<String> logs) testFn) {
+R runWithPrint<R>(R Function(List<String> logs) testFn, {bool debug = false}) {
   List<String> logs = [];
 
   var spec = ZoneSpecification(print: (_, __, ___, String msg) {
+    if (debug) stdout.writeln(msg);
+
     logs.add(msg);
   });
 
