@@ -1,6 +1,6 @@
 name: run_with_print
 description: Helper for getting the print output in tests.
-version: 0.0.1
+version: 0.0.2
 homepage: https://github.com/dev-yakuza/bull
 repository: https://github.com/dev-yakuza/bull
 
