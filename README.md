@@ -46,7 +46,26 @@ void main() {
 }
 ```
 
-You can just wrap the test code with `runWithPrint(() {});` to get the `print` output.
+You can just wrap the test code with `runWithPrint(() {});` to get the `print` output. And, you can also use it in asynchronous test.
+
+```dart
+import 'package:run_with_print/run_with_print.dart';
+import 'package:test/test.dart';
+
+void main() {
+  test('Check print contents', await () {
+    await runWithPrint((logs) async {
+      print('test log');
+      await Future.delayed(const Duration());
+      expect(logs[0], 'test log');
+
+      print('test message');
+      await Future.delayed(const Duration());
+      expect(logs[1], 'test message');
+    });
+  });
+}
+```
 
 ## Contributing
 

@@ -1,15 +1,21 @@
 import 'dart:async';
 
-void runWithPrint(void Function(List<String> logs) testFn) {
+R runWithPrint<R>(R Function(List<String> logs) testFn) {
   List<String> logs = [];
 
   var spec = ZoneSpecification(print: (_, __, ___, String msg) {
     logs.add(msg);
   });
 
-  void callback() {
-    testFn(logs);
-  }
+  final isAsync = testFn.runtimeType.toString().contains('Future');
 
-  return Zone.current.fork(specification: spec).run<void>(callback);
+  final callback = (isAsync
+      ? () async {
+          await (testFn(logs) as Future);
+        }
+      : () {
+          testFn(logs);
+        }) as R Function();
+
+  return Zone.current.fork(specification: spec).run(callback);
 }
