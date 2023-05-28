@@ -25,4 +25,14 @@ void main() {
       expect(logs[1], 'test message');
     });
   });
+
+  test('Check print contents with debug option', () {
+    runWithPrint((logs) {
+      print('test log');
+      expect(logs[0], 'test log');
+
+      print('test message');
+      expect(logs[1], 'test message');
+    }, debug: true);
+  });
 }

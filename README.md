@@ -25,7 +25,7 @@ dev_dependencies:
 ...
 ```
 
-## Example
+## Usage
 
 You can use the `runWithPrint` function to get the `print` output. A full test example could look like the following.
 
@@ -46,7 +46,11 @@ void main() {
 }
 ```
 
-You can just wrap the test code with `runWithPrint(() {});` to get the `print` output. And, you can also use it in asynchronous test.
+You can just wrap the test code with `runWithPrint(() {});` to get the `print` output.
+
+### Asynchronous test
+
+You can also use the `runWithPrint` function in asynchronous test.
 
 ```dart
 import 'package:run_with_print/run_with_print.dart';
@@ -65,6 +69,18 @@ void main() {
     });
   });
 }
+```
+
+### debug option
+
+When you use the `print` function in `runWithPrint`, you can't see the log on the console. If you want to see the log on the console, please use the `debug` option like the following.
+
+```dart
+test('Check print contents', () {
+  runWithPrint((logs) s{
+    ...
+  }, debug: true);
+});
 ```
 
 ## Contributing
