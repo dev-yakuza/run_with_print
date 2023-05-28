@@ -13,4 +13,16 @@ void main() {
       expect(logs[1], 'test message');
     });
   });
+
+  test('Check print contents with async', () async {
+    await runWithPrint((logs) async {
+      print('test log');
+      await Future.delayed(const Duration());
+      expect(logs[0], 'test log');
+
+      print('test message');
+      await Future.delayed(const Duration());
+      expect(logs[1], 'test message');
+    });
+  });
 }
