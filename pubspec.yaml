@@ -10,6 +10,6 @@ environment:
 dependencies:
 
 dev_dependencies:
-  bull: ^0.0.4
-  lints: ^2.0.0
+  bull: ^0.0.5
+  lints: ^2.1.1
   test: ^1.21.0
