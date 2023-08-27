@@ -12,4 +12,4 @@ dependencies:
 dev_dependencies:
   bull: ^0.0.5
   lints: ^2.1.1
-  test: ^1.21.0
+  test: ^1.24.6
